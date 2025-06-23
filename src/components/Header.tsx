@@ -14,12 +14,13 @@ export function Header() {
         <SidebarTrigger />
         <div className="flex items-center gap-2">
           <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center relative">
-            {/* Cloud with message and arrows */}
+            {/* Cloud with envelope and arrows */}
             <svg className="w-6 h-6 text-white" viewBox="0 0 24 24" fill="currentColor">
               {/* Cloud shape */}
               <path d="M19.35 10.04A7.49 7.49 0 0 0 12 4C9.11 4 6.6 5.64 5.35 8.04A5.994 5.994 0 0 0 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z"/>
-              {/* Message bubble inside cloud */}
-              <rect x="8" y="9" width="8" height="6" rx="1" fill="rgba(255,255,255,0.3)" stroke="white" strokeWidth="0.5"/>
+              {/* Envelope inside cloud */}
+              <rect x="8" y="9" width="8" height="5" rx="0.5" fill="rgba(255,255,255,0.3)" stroke="white" strokeWidth="0.4"/>
+              <path d="M8 9.5l4 2.5 4-2.5" stroke="white" strokeWidth="0.4" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
               {/* Up arrow */}
               <path d="M11 7l1-1 1 1" stroke="white" strokeWidth="0.8" fill="none" strokeLinecap="round"/>
               {/* Down arrow */}
