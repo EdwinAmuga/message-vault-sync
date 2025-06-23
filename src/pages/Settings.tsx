@@ -5,14 +5,17 @@ import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Settings as SettingsIcon, Cloud, Shield, Download } from "lucide-react";
+import { Settings as SettingsIcon, Cloud, Shield, Download, Palette } from "lucide-react";
+import { useTheme } from "next-themes";
 
 const Settings = () => {
+  const { theme, setTheme } = useTheme();
+
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-3xl font-bold text-gray-900">Settings</h1>
-        <p className="text-gray-600 mt-2">Configure your MsgSync preferences and backup settings</p>
+        <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100">Settings</h1>
+        <p className="text-gray-600 dark:text-gray-400 mt-2">Configure your MsgSync preferences and backup settings</p>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -150,6 +153,20 @@ const Settings = () => {
           </CardHeader>
           <CardContent className="space-y-6">
             <div className="space-y-2">
+              <Label>Theme</Label>
+              <Select value={theme} onValueChange={setTheme}>
+                <SelectTrigger>
+                  <SelectValue placeholder="Select theme" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="light">Light</SelectItem>
+                  <SelectItem value="dark">Dark</SelectItem>
+                  <SelectItem value="system">System</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+
+            <div className="space-y-2">
               <Label>Default Message View</Label>
               <Select defaultValue="conversation">
                 <SelectTrigger>
@@ -171,7 +188,7 @@ const Settings = () => {
             <div className="flex items-center justify-between">
               <div className="space-y-0.5">
                 <Label>Show message previews</Label>
-                <p className="text-sm text-gray-600">Display message content in lists</p>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Display message content in lists</p>
               </div>
               <Switch defaultChecked />
             </div>
