@@ -1,12 +1,14 @@
 
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import { Button } from "@/components/ui/button";
-import { Upload, Search } from "lucide-react";
+import { Upload, Search, LogOut } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
+import { useAuth } from "@/contexts/AuthContext";
 
 export function Header() {
   const [searchQuery, setSearchQuery] = useState("");
+  const { user, logout } = useAuth();
 
   return (
     <header className="h-16 flex items-center justify-between px-6 bg-white border-b border-gray-200">
@@ -51,6 +53,13 @@ export function Header() {
         <Button size="sm">
           Add Message
         </Button>
+        <div className="flex items-center gap-2 ml-4 pl-4 border-l border-gray-200">
+          <span className="text-sm text-gray-600">Welcome, {user?.name || user?.email}</span>
+          <Button variant="outline" size="sm" onClick={logout}>
+            <LogOut className="w-4 h-4 mr-2" />
+            Logout
+          </Button>
+        </div>
       </div>
     </header>
   );
