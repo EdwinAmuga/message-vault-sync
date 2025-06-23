@@ -31,7 +31,7 @@ const items = [
 ];
 
 export function AppSidebar() {
-  const { collapsed } = useSidebar();
+  const { state } = useSidebar();
   const location = useLocation();
   const currentPath = location.pathname;
 
@@ -45,8 +45,10 @@ export function AppSidebar() {
       ? "bg-blue-50 text-blue-700 font-medium border-r-2 border-blue-700" 
       : "text-gray-600 hover:bg-gray-50 hover:text-gray-900";
 
+  const isCollapsed = state === "collapsed";
+
   return (
-    <Sidebar className={collapsed ? "w-14" : "w-64"} collapsible>
+    <Sidebar className={isCollapsed ? "w-14" : "w-64"}>
       <SidebarContent className="bg-white">
         <SidebarGroup>
           <SidebarGroupLabel className="text-xs font-semibold text-gray-500 uppercase tracking-wide">
@@ -63,7 +65,7 @@ export function AppSidebar() {
                       className={getNavCls}
                     >
                       <item.icon className="w-4 h-4" />
-                      {!collapsed && <span>{item.title}</span>}
+                      {!isCollapsed && <span>{item.title}</span>}
                     </NavLink>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
