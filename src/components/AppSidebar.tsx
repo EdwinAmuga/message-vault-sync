@@ -48,11 +48,11 @@ export function AppSidebar() {
   const isCollapsed = state === "collapsed";
 
   return (
-    <Sidebar className={isCollapsed ? "w-14" : "w-64"}>
+    <Sidebar className={isCollapsed ? "w-12" : "w-48"}>
       <SidebarContent className="bg-white">
         <SidebarGroup>
-          <SidebarGroupLabel className="text-xs font-semibold text-gray-500 uppercase tracking-wide">
-            Navigation
+          <SidebarGroupLabel className="text-xs font-semibold text-gray-500 uppercase tracking-wide px-2">
+            {!isCollapsed && "Navigation"}
           </SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
@@ -64,8 +64,8 @@ export function AppSidebar() {
                       end={item.url === "/"} 
                       className={getNavCls}
                     >
-                      <item.icon className="w-4 h-4" />
-                      {!isCollapsed && <span>{item.title}</span>}
+                      <item.icon className="w-4 h-4 min-w-4" />
+                      {!isCollapsed && <span className="text-sm">{item.title}</span>}
                     </NavLink>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
