@@ -27,7 +27,7 @@ const AppContent = () => {
   }
 
   return (
-    <SidebarProvider>
+    <SidebarProvider defaultOpen={false}>
       <div className="min-h-screen flex w-full">
         <Routes>
           <Route path="/" element={<Layout />}>
