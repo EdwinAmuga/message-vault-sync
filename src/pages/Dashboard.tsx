@@ -1,10 +1,11 @@
 
 import { useState, useEffect } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { MessageSquare, Upload, Download, Users, Activity } from "lucide-react";
+import { MessageSquare, Upload, Download, Users, Activity, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { messageSync, SyncStats } from "@/services/messageSync";
 import DeviceScanner from "@/components/DeviceScanner";
+import { useAuth } from "@/contexts/AuthContext";
 
 const Dashboard = () => {
   const [syncStats, setSyncStats] = useState<SyncStats>({
@@ -14,6 +15,8 @@ const Dashboard = () => {
     lastSync: null,
     syncInProgress: false
   });
+  
+  const { logout } = useAuth();
 
   useEffect(() => {
     const unsubscribe = messageSync.subscribe(setSyncStats);
@@ -71,7 +74,7 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="space-y-6 max-w-7xl mx-auto">
+    <div className="space-y-6 max-w-7xl mx-auto flex flex-col min-h-full">
       <div>
         <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100">Dashboard</h1>
         <p className="text-gray-600 dark:text-gray-400 mt-2">Overview of your message backup and sync activity</p>
@@ -96,7 +99,7 @@ const Dashboard = () => {
         ))}
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 flex-1">
         <DeviceScanner />
 
         <Card>
@@ -137,6 +140,18 @@ const Dashboard = () => {
             </div>
           </CardContent>
         </Card>
+      </div>
+
+      {/* Logout button at the bottom */}
+      <div className="mt-auto pt-6 border-t border-gray-200 dark:border-gray-700">
+        <Button 
+          variant="outline" 
+          onClick={logout}
+          className="w-full justify-center"
+        >
+          <LogOut className="w-4 h-4 mr-2" />
+          Logout
+        </Button>
       </div>
     </div>
   );
