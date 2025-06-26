@@ -1,7 +1,6 @@
 
 import { SidebarTrigger } from "@/components/ui/sidebar";
-import { Button } from "@/components/ui/button";
-import { Upload, Search } from "lucide-react";
+import { Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
 
@@ -44,10 +43,7 @@ export function Header() {
       </div>
 
       <div className="flex items-center gap-2">
-        <Button variant="outline" size="sm">
-          <Upload className="w-4 h-4 mr-2" />
-          Upload Messages
-        </Button>
+        {/* Header content can be expanded later */}
       </div>
     </header>
   );

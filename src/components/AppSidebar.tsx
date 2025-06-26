@@ -30,7 +30,7 @@ const items = [
   { title: "Messages", url: "/messages", icon: MessageSquare },
   { title: "Contacts", url: "/contacts", icon: Users },
   { title: "Add Message", url: "/compose", icon: Plus },
-  { title: "Upload", url: "/compose", icon: Upload },
+  { title: "Upload Messages", url: "/upload", icon: Upload },
   { title: "Trash", url: "/trash", icon: Trash2 },
   { title: "Settings", url: "/settings", icon: Settings },
 ];

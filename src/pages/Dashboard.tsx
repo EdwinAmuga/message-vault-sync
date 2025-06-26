@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { messageSync, SyncStats } from "@/services/messageSync";
 import DeviceScanner from "@/components/DeviceScanner";
 import { useAuth } from "@/contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
   const [syncStats, setSyncStats] = useState<SyncStats>({
@@ -17,6 +18,7 @@ const Dashboard = () => {
   });
   
   const { logout } = useAuth();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const unsubscribe = messageSync.subscribe(setSyncStats);
@@ -33,6 +35,7 @@ const Dashboard = () => {
       icon: MessageSquare,
       color: "text-blue-600",
       bgColor: "bg-blue-50 dark:bg-blue-950",
+      onClick: () => navigate("/messages"),
     },
     {
       title: "SMS Messages",
@@ -41,6 +44,7 @@ const Dashboard = () => {
       icon: MessageSquare,
       color: "text-green-600",
       bgColor: "bg-green-50 dark:bg-green-950",
+      onClick: () => navigate("/messages?filter=sms"),
     },
     {
       title: "WhatsApp Messages",
@@ -49,6 +53,7 @@ const Dashboard = () => {
       icon: MessageSquare,
       color: "text-purple-600",
       bgColor: "bg-purple-50 dark:bg-purple-950",
+      onClick: () => navigate("/messages?filter=whatsapp"),
     },
     {
       title: "Sync Status",
@@ -57,6 +62,7 @@ const Dashboard = () => {
       icon: Activity,
       color: syncStats.syncInProgress ? "text-orange-600" : "text-gray-600",
       bgColor: syncStats.syncInProgress ? "bg-orange-50 dark:bg-orange-950" : "bg-gray-50 dark:bg-gray-800",
+      onClick: () => navigate("/upload"),
     },
   ];
 
@@ -82,7 +88,11 @@ const Dashboard = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         {stats.map((stat) => (
-          <Card key={stat.title}>
+          <Card 
+            key={stat.title} 
+            className="cursor-pointer hover:shadow-md transition-shadow"
+            onClick={stat.onClick}
+          >
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium text-gray-600 dark:text-gray-400">
                 {stat.title}
@@ -122,9 +132,13 @@ const Dashboard = () => {
               <Download className="w-4 h-4 mr-2" />
               Export All Messages ({syncStats.totalMessages})
             </Button>
-            <Button className="w-full justify-start" variant="outline">
+            <Button 
+              className="w-full justify-start" 
+              variant="outline"
+              onClick={() => navigate("/upload")}
+            >
               <Upload className="w-4 h-4 mr-2" />
-              Import Messages
+              Upload Messages
             </Button>
             <div className="pt-2">
               <p className="text-sm text-gray-600 dark:text-gray-400">

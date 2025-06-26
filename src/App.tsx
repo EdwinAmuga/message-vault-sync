@@ -12,6 +12,7 @@ import Dashboard from "./pages/Dashboard";
 import Messages from "./pages/Messages";
 import Contacts from "./pages/Contacts";
 import Compose from "./pages/Compose";
+import Upload from "./pages/Upload";
 import Trash from "./pages/Trash";
 import Settings from "./pages/Settings";
 import NotFound from "./pages/NotFound";
@@ -35,6 +36,7 @@ const AppContent = () => {
             <Route path="messages" element={<Messages />} />
             <Route path="contacts" element={<Contacts />} />
             <Route path="compose" element={<Compose />} />
+            <Route path="upload" element={<Upload />} />
             <Route path="trash" element={<Trash />} />
             <Route path="settings" element={<Settings />} />
           </Route>

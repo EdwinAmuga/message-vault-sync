@@ -6,10 +6,13 @@ import { Badge } from "@/components/ui/badge";
 import { MessageSquare, Phone, Download, Trash2, Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { messageSync, Message } from "@/services/messageSync";
+import { useLocation, useSearchParams } from "react-router-dom";
 
 const Messages = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [messages, setMessages] = useState<Message[]>([]);
+  const [searchParams] = useSearchParams();
+  const platformFilter = searchParams.get('filter');
   
   useEffect(() => {
     const unsubscribe = messageSync.subscribe(() => {
@@ -20,10 +23,14 @@ const Messages = () => {
     return unsubscribe;
   }, []);
 
-  const filteredMessages = messages.filter(message =>
-    message.contact.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    message.content.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  const filteredMessages = messages.filter(message => {
+    const matchesSearch = message.contact.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      message.content.toLowerCase().includes(searchQuery.toLowerCase());
+    
+    const matchesPlatform = !platformFilter || message.platform === platformFilter;
+    
+    return matchesSearch && matchesPlatform;
+  });
 
   // Group messages by contact
   const groupedMessages = filteredMessages.reduce((groups, message) => {
@@ -67,14 +74,28 @@ const Messages = () => {
     linkElement.click();
   };
 
+  const getFilterTitle = () => {
+    if (platformFilter === 'sms') return 'SMS Messages';
+    if (platformFilter === 'whatsapp') return 'WhatsApp Messages';
+    return 'All Messages';
+  };
+
   return (
     <div className="space-y-6 max-w-6xl mx-auto">
       <div className="flex justify-between items-start">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100">Messages</h1>
+          <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100">
+            {getFilterTitle()}
+          </h1>
           <p className="text-gray-600 dark:text-gray-400 mt-2">
-            View and manage your backed up messages ({messages.length} total)
+            View and manage your backed up messages ({filteredMessages.length} 
+            {platformFilter ? ` ${platformFilter.toUpperCase()}` : ' total'})
           </p>
+          {platformFilter && (
+            <Badge className="mt-2" variant="outline">
+              Filtered by: {platformFilter.toUpperCase()}
+            </Badge>
+          )}
         </div>
         <Button onClick={exportMessages} disabled={filteredMessages.length === 0}>
           <Download className="w-4 h-4 mr-2" />
@@ -161,7 +182,7 @@ const Messages = () => {
           <CardContent className="text-center py-12">
             <Search className="w-12 h-12 text-gray-400 mx-auto mb-4" />
             <h3 className="text-lg font-medium text-gray-900 dark:text-gray-100 mb-2">No messages found</h3>
-            <p className="text-gray-600 dark:text-gray-400">Try adjusting your search criteria</p>
+            <p className="text-gray-600 dark:text-gray-400">Try adjusting your search criteria or filter</p>
           </CardContent>
         </Card>
       )}
