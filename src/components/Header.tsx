@@ -1,20 +1,22 @@
 
 import { SidebarTrigger } from "@/components/ui/sidebar";
-import { Search } from "lucide-react";
+import { Search, Menu } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 export function Header() {
   const [searchQuery, setSearchQuery] = useState("");
+  const isMobile = useIsMobile();
 
   return (
-    <header className="h-16 flex items-center justify-between px-6 bg-white border-b border-gray-200">
-      <div className="flex items-center gap-4">
-        <div className="text-indigo-600">
+    <header className="h-16 flex items-center justify-between px-4 lg:px-6 bg-white border-b border-gray-200 sticky top-0 z-40">
+      <div className="flex items-center gap-3 lg:gap-4">
+        <div className="text-indigo-600 hover:text-indigo-700 transition-colors">
           <SidebarTrigger />
         </div>
         <div className="flex items-center gap-2">
-          <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center relative">
+          <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center relative shadow-sm">
             {/* Cloud with envelope and arrows */}
             <svg className="w-6 h-6 text-white" viewBox="0 0 24 24" fill="currentColor">
               {/* Cloud shape */}
@@ -28,18 +30,20 @@ export function Header() {
               <path d="M11 17l1 1 1-1" stroke="white" strokeWidth="0.8" fill="none" strokeLinecap="round"/>
             </svg>
           </div>
-          <span className="font-semibold text-lg text-gray-900">MsgSync</span>
+          {!isMobile && (
+            <span className="font-semibold text-lg text-gray-900">MsgSync</span>
+          )}
         </div>
       </div>
       
-      <div className="flex items-center gap-4 flex-1 max-w-md mx-4">
+      <div className="flex items-center gap-2 lg:gap-4 flex-1 max-w-md mx-2 lg:mx-4">
         <div className="relative flex-1">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
           <Input
-            placeholder="Search messages..."
+            placeholder={isMobile ? "Search..." : "Search messages..."}
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="pl-10"
+            className="pl-10 h-9 lg:h-10"
           />
         </div>
       </div>
