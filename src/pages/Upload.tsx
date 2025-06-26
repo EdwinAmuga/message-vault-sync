@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Upload, Smartphone, CheckCircle, AlertCircle, RefreshCw, MessageSquare, Settings } from "lucide-react";
+import { Upload as UploadIcon, Smartphone, CheckCircle, AlertCircle, RefreshCw, MessageSquare, Settings } from "lucide-react";
 import { deviceScanner, Device } from "@/services/deviceScanner";
 import { messageSync } from "@/services/messageSync";
 import { useToast } from "@/hooks/use-toast";
@@ -187,7 +187,7 @@ const Upload = () => {
               </>
             ) : (
               <>
-                <Upload className="w-4 h-4 mr-2" />
+                <UploadIcon className="w-4 h-4 mr-2" />
                 Start Device Scan
               </>
             )}
