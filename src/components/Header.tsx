@@ -3,28 +3,10 @@ import { SidebarTrigger } from "@/components/ui/sidebar";
 import { Button } from "@/components/ui/button";
 import { Upload, Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
-import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { useState } from "react";
-import { useAuth } from "@/contexts/AuthContext";
 
 export function Header() {
   const [searchQuery, setSearchQuery] = useState("");
-  const { user } = useAuth();
-
-  const getFirstName = () => {
-    if (user?.name) {
-      return user.name.split(' ')[0];
-    }
-    if (user?.email) {
-      return user.email.split('@')[0];
-    }
-    return 'User';
-  };
-
-  const getInitials = () => {
-    const firstName = getFirstName();
-    return firstName.charAt(0).toUpperCase();
-  };
 
   return (
     <header className="h-16 flex items-center justify-between px-6 bg-white border-b border-gray-200">
@@ -66,18 +48,6 @@ export function Header() {
           <Upload className="w-4 h-4 mr-2" />
           Upload Messages
         </Button>
-        <Button size="sm">
-          Add Message
-        </Button>
-        <div className="flex flex-col items-center gap-1 ml-4 pl-4 border-l border-gray-200">
-          <Avatar className="w-8 h-8">
-            <AvatarImage src="" alt={getFirstName()} />
-            <AvatarFallback className="bg-blue-500 text-white text-sm">
-              {getInitials()}
-            </AvatarFallback>
-          </Avatar>
-          <span className="text-xs text-gray-600">{getFirstName()}</span>
-        </div>
       </div>
     </header>
   );
