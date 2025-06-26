@@ -69,25 +69,25 @@ export function AppSidebar() {
   };
 
   return (
-    <Sidebar className={isCollapsed ? "w-12" : "w-48"}>
+    <Sidebar className={isCollapsed ? "w-12" : "w-32 sm:w-36 md:w-40"}>
       <SidebarContent className="bg-white">
-        <SidebarHeader className="p-4 border-b border-gray-200">
-          <div className="flex flex-col items-center gap-2">
-            <Avatar className="w-10 h-10">
+        <SidebarHeader className="p-2 border-b border-gray-200">
+          <div className="flex flex-col items-center gap-1">
+            <Avatar className="w-8 h-8">
               <AvatarImage src="" alt={getFirstName()} />
-              <AvatarFallback className="bg-blue-500 text-white">
+              <AvatarFallback className="bg-blue-500 text-white text-xs">
                 {getInitials()}
               </AvatarFallback>
             </Avatar>
             {!isCollapsed && (
-              <span className="text-sm font-medium text-gray-900">{getFirstName()}</span>
+              <span className="text-xs font-medium text-gray-900 text-center truncate w-full">{getFirstName()}</span>
             )}
           </div>
         </SidebarHeader>
 
         <SidebarGroup>
-          <SidebarGroupLabel className="text-xs font-semibold text-gray-500 uppercase tracking-wide px-2">
-            {!isCollapsed && "Navigation"}
+          <SidebarGroupLabel className="text-xs font-semibold text-gray-500 uppercase tracking-wide px-1">
+            {!isCollapsed && "Nav"}
           </SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
@@ -100,7 +100,7 @@ export function AppSidebar() {
                       className={getNavCls}
                     >
                       <item.icon className="w-4 h-4 min-w-4" />
-                      <span className="text-sm">{item.title}</span>
+                      <span className="text-xs truncate">{item.title}</span>
                     </NavLink>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
