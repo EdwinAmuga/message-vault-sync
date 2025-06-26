@@ -10,7 +10,9 @@ export function Header() {
   return (
     <header className="h-16 flex items-center justify-between px-6 bg-white border-b border-gray-200">
       <div className="flex items-center gap-4">
-        <SidebarTrigger />
+        <div className="text-indigo-600">
+          <SidebarTrigger />
+        </div>
         <div className="flex items-center gap-2">
           <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center relative">
             {/* Cloud with envelope and arrows */}

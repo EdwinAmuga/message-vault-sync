@@ -9,7 +9,7 @@ const Layout = () => {
       <AppSidebar />
       <div className="flex-1 flex flex-col min-w-0">
         <Header />
-        <main className="flex-1 p-4 lg:p-6 bg-gray-50 dark:bg-gray-900 overflow-x-hidden">
+        <main className="flex-1 p-4 lg:p-6 bg-blue-50 dark:bg-gray-900 overflow-x-hidden">
           <div className="w-full">
             <Outlet />
           </div>
