@@ -69,7 +69,7 @@ export function AppSidebar() {
   };
 
   return (
-    <Sidebar className={isCollapsed ? "w-12" : "w-32 sm:w-36 md:w-40"}>
+    <Sidebar className={isCollapsed ? "w-12" : "w-48"}>
       <SidebarContent className="bg-white/60 backdrop-blur-md border-r border-gray-200/30">
         <SidebarHeader className="p-2 border-b border-gray-200/30">
           <div className="flex flex-col items-center gap-1">
@@ -104,7 +104,7 @@ export function AppSidebar() {
                       }
                     >
                       <item.icon className="w-4 h-4 min-w-4" />
-                      <span className="text-xs truncate font-semibold">{item.title}</span>
+                      <span className="text-sm truncate font-semibold">{item.title}</span>
                     </NavLink>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
