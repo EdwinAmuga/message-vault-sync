@@ -70,8 +70,8 @@ export function AppSidebar() {
 
   return (
     <Sidebar className={isCollapsed ? "w-12" : "w-32 sm:w-36 md:w-40"}>
-      <SidebarContent className="bg-white/80 backdrop-blur-sm border-r border-gray-200/50">
-        <SidebarHeader className="p-2 border-b border-gray-200/50">
+      <SidebarContent className="bg-white/60 backdrop-blur-md border-r border-gray-200/30">
+        <SidebarHeader className="p-2 border-b border-gray-200/30">
           <div className="flex flex-col items-center gap-1">
             <Avatar className="w-8 h-8">
               <AvatarImage src="" alt={getFirstName()} />
@@ -99,8 +99,8 @@ export function AppSidebar() {
                       end={item.url === "/"} 
                       className={({ isActive }) => 
                         isActive 
-                          ? "bg-blue-100/90 text-blue-800 font-semibold border-r-2 border-blue-700 drop-shadow-sm" 
-                          : "text-gray-700 hover:bg-gray-100/80 hover:text-gray-900 font-medium drop-shadow-sm"
+                          ? "bg-blue-100/70 text-blue-800 font-semibold border-r-2 border-blue-700 drop-shadow-sm" 
+                          : "text-gray-700 hover:bg-gray-100/60 hover:text-gray-900 font-medium drop-shadow-sm"
                       }
                     >
                       <item.icon className="w-4 h-4 min-w-4" />
