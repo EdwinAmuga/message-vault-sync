@@ -159,21 +159,21 @@ const Upload = () => {
   return (
     <div className="space-y-6 max-w-4xl mx-auto">
       <div>
-        <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100">Upload Messages</h1>
-        <p className="text-gray-600 dark:text-gray-400 mt-2">
-          Scan and upload messages from your devices with real-time synchronization
+        <h1 className="text-3xl font-bold">Message Backup & Sync</h1>
+        <p className="text-muted-foreground mt-2">
+          Securely backup and sync your SMS and WhatsApp messages across all your devices
         </p>
       </div>
 
-      {/* Device Scanner */}
+      {/* Message Backup & Sync */}
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
-            <Smartphone className="w-5 h-5 text-blue-600" />
-            Device Scanner
+            <Smartphone className="w-5 h-5 text-primary" />
+            Message Backup & Sync
           </CardTitle>
           <CardDescription>
-            Scan for devices to sync messages from
+            Connect your devices to backup and sync your messages securely
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
@@ -189,15 +189,15 @@ const Upload = () => {
               </>
             ) : (
               <>
-                <UploadIcon className="w-4 h-4 mr-2" />
-                Start Device Scan
+                <Smartphone className="w-4 h-4 mr-2" />
+                Scan for Devices
               </>
             )}
           </Button>
 
           {devices.length > 0 && (
             <div className="space-y-3 mt-6">
-              <h4 className="text-sm font-medium text-gray-700">
+              <h4 className="text-sm font-medium">
                 Available Devices ({devices.length})
               </h4>
               {devices.map((device) => (
@@ -212,7 +212,7 @@ const Upload = () => {
                             {device.type}
                           </Badge>
                         </h5>
-                        <p className="text-sm text-gray-500">
+                        <p className="text-sm text-muted-foreground">
                           {device.platform} • 
                           {device.messageCount ? ` ${device.messageCount} messages` : ' Unknown count'}
                           {device.lastSync && ` • Last sync: ${device.lastSync.toLocaleString()}`}
@@ -224,8 +224,8 @@ const Upload = () => {
                     </Badge>
                   </div>
 
-                  {/* Permission Status */}
-                  <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                   {/* Permission Status */}
+                   <div className="flex items-center justify-between p-3 bg-muted/50 rounded-lg">
                     <div className="flex items-center gap-2">
                       {getPermissionIcon(device.permissions)}
                       <span className={`text-sm ${getPermissionStatusColor(device.permissions)}`}>
@@ -272,23 +272,23 @@ const Upload = () => {
                     </Button>
                   </div>
 
-                  {/* Synced Messages Summary */}
-                  {syncedMessages[device.id] && (
-                    <div className="p-3 bg-green-50 border border-green-200 rounded-lg">
-                      <p className="text-sm text-green-700">
-                        ✓ Successfully synced {syncedMessages[device.id].length} messages
-                      </p>
-                    </div>
-                  )}
+                   {/* Synced Messages Summary */}
+                   {syncedMessages[device.id] && (
+                     <div className="p-3 bg-green-500/10 border border-green-500/20 rounded-lg">
+                       <p className="text-sm text-green-600 dark:text-green-400">
+                         ✓ Successfully synced {syncedMessages[device.id].length} messages
+                       </p>
+                     </div>
+                   )}
                 </div>
               ))}
             </div>
           )}
 
           {!scanning && devices.length === 0 && (
-            <div className="text-center py-8 text-gray-500">
+            <div className="text-center py-8 text-muted-foreground">
               <Smartphone className="w-12 h-12 mx-auto mb-3 opacity-50" />
-              <p>No devices found. Click "Start Device Scan" to look for available devices.</p>
+              <p>No devices found. Click "Scan for Devices" to look for available devices.</p>
             </div>
           )}
         </CardContent>
